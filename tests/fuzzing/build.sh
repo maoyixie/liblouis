@@ -10,6 +10,10 @@ find ../.. -name "*.o" -exec ar rcs fuzz_lib.a {} \;
 $CXX $CXXFLAGS -c table_fuzzer.cc -I/src/liblouis -o table_fuzzer.o
 $CXX $CXXFLAGS $LIB_FUZZING_ENGINE table_fuzzer.o -o $OUT/table_fuzzer fuzz_lib.a
 
+#add
+$CXX $CXXFLAGS -c lou_compileString.cc -I/src/liblouis -o lou_compileString.o
+$CXX $CXXFLAGS $LIB_FUZZING_ENGINE lou_compileString.o -o $OUT/lou_compileString fuzz_lib.a
+
 $CC $CFLAGS -c fuzz_translate_generic.c -o fuzz_translate_generic.o \
     -I$SRC/liblouis -I$SRC/liblouis/liblouis
 $CXX $CXXFLAGS $LIB_FUZZING_ENGINE fuzz_translate_generic.o \
